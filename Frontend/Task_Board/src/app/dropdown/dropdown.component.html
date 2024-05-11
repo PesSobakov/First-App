@@ -1,0 +1,22 @@
+<!--
+<h2>{{data}}</h2>
+
+<div>
+  <label for="data-text"> data text: </label>
+  <input id="data-text" [(ngModel)]="data" placeholder="data-text">
+</div>
+-->
+<div tabindex="0" (focusin)="this.isOpen = true" (focusout)="this.isOpen = false" class="relative"> 
+  <ng-container>
+        <ng-content></ng-content>
+  </ng-container>
+    <ng-container *ngIf="isOpen" >
+    <div class="absolute left-0 z-10 mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+      <div *ngFor="let item of textAndEvent" class="py-1">
+        <div (click)="item.event()" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">
+          {{item.text}}
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,11 @@
+<div *ngIf="visible" class="dialog absolute z-20 inset-x-40 w-11/12 border flex flex-col bg-white">
+    <div class="flex flex-row justify-end bg-gray-300">
+        <div *ngIf="closable" (click)="close()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+        </div>
+    </div>
+    <ng-content></ng-content>
+</div>
+<div *ngIf="visible" class="overlay fixed left-0 top-0 inset-x-0 bg-gray-500/75 w-screen h-screen z-10" (click)="close()"></div>

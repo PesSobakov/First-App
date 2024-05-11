@@ -1,0 +1,53 @@
+<div class="flex flex-col border rounded border-gray-400 p-3">
+    <div class="flex flex-row my-1">
+        <div (click)="this.openCardEvent.emit(this.card.id)" class="grow font-bold">
+            {{card.name}}
+        </div>
+        <div>
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="card.description" class="text-gray-700 my-1">
+        {{card.description}}
+    </div>
+    <div class="flex flex-row my-1">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+        </svg>
+        <div>
+            {{card.dueDate.toDateString()}}
+        </div>
+    </div>
+    <div class="flex flex-row my-1 self-start">
+        <ng-container *ngIf="card.priority==0">
+            <div class="rounded-full bg-violet-200 text-violet-800 px-2">
+                • {{priorityToString(card.priority) }}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="card.priority==1">
+            <div class="rounded-full bg-violet-300 text-violet-800 px-2">
+                • {{priorityToString(card.priority) }}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="card.priority==2">
+            <div class="rounded-full bg-violet-400 text-violet-800 px-2">
+                • {{priorityToString(card.priority) }}
+            </div>
+        </ng-container>
+        <div class="grow"></div>
+    </div>
+    <div class="my-1">
+        <app-dropdown [textAndEvent]="getMoveToTextAndEvent()">
+            <div class="inline-flex justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 bg-gray-300">
+                <div class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">
+                    Move to
+                </div>
+            </div>
+        </app-dropdown>
+    </div>
+</div>

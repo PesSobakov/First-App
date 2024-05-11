@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Diagnostics;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
 using System.Security.Policy;
+using Microsoft.AspNetCore.Cors;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,6 +17,7 @@ namespace Task_Board_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("OpenCORSPolicy")]
     public class ListsController : ControllerBase
     {
         private readonly BoardContext _boardContext;

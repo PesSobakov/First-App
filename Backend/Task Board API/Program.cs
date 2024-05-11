@@ -14,6 +14,17 @@ namespace Task_Board_API
         {
             var builder = WebApplication.CreateBuilder(args);
 
+           //CORS
+            string CORSOpenPolicy = "OpenCORSPolicy";
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(
+                  name: CORSOpenPolicy,
+                  builder => {
+                      builder.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
+                  });
+            });
+
             // Add services to the container.
             builder.Services.AddControllers();
             builder.Services.AddDbContext<BoardContext>(
@@ -58,18 +69,20 @@ namespace Task_Board_API
             }
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
+            //if (app.Environment.IsDevelopment())
+            //{
             app.UseSwagger();
             app.UseSwaggerUI();
-            }
+            //}
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+          
 
 
             app.MapControllers();
+            app.UseCors(CORSOpenPolicy);
+            app.UseAuthorization();
 
             app.Run();
         }
